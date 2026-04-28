@@ -16,7 +16,7 @@
 
 | # | Project | Concepts Covered |
 |---|---------|-----------------|
-| 01 | [Array Operations](#-01---array-operations) | Lists, Loops, Functions |
+| 01 | [Array Operations](https://github.com/Gowtham-314/python-mini-projects/tree/main/array_operations) | Lists, Loops, Functions |
 | 02 | [Coin Toss Simulator](#-02---coin-toss-simulator) | Random Module, Conditionals |
 | 03 | [Math Game](#-03---math-game) | User Input, Logic, Scoring |
 | 04 | [E-Cart System](#-04---e-cart-system) | OOP, Classes, CRUD |
