@@ -1,0 +1,16 @@
+{
+    "Guest User": [
+        {
+            "saved_at": "2026-01-10 16:23:46",
+            "items": [
+                {
+                    "item_name": "apple",
+                    "quantity": 2,
+                    "price": 300.0,
+                    "total": 600.0
+                }
+            ],
+            "grand_total": 600.0
+        }
+    ]
+}
