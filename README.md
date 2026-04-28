@@ -17,9 +17,9 @@
 | # | Project | Concepts Covered |
 |---|---------|-----------------|
 | 01 | [Array Operations](https://github.com/Gowtham-314/python-mini-projects/tree/main/array_operations) | Lists, Loops, Functions |
-| 02 | [Coin Toss Simulator](#-02---coin-toss-simulator) | Random Module, Conditionals |
-| 03 | [Math Game](#-03---math-game) | User Input, Logic, Scoring |
-| 04 | [E-Cart System](#-04---e-cart-system) | OOP, Classes, CRUD |
+| 02 | [Coin Toss Simulator](https://github.com/Gowtham-314/python-mini-projects/tree/main/coin_toss_simulator) | Random Module, Conditionals |
+| 03 | [Math Game](https://github.com/Gowtham-314/python-mini-projects/tree/main/math_game) | User Input, Logic, Scoring |
+| 04 | [E-Cart System](https://github.com/Gowtham-314/python-mini-projects/tree/main/e_cart_system) | OOP, Classes, Functions |
 
 ---
 
@@ -70,7 +70,7 @@ python main.py
 
 - ✅ Object-Oriented Programming
 - ✅ Class & Methods
-- ✅ Cart logic (CRUD)
+- ✅ Functions
 
 ```bash
 cd 04-e-cart-system
