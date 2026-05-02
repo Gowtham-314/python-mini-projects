@@ -69,8 +69,7 @@ python main.py
 > A simple shopping cart system where users can add, remove, and view items.
 
 - ✅ Object-Oriented Programming
-- ✅ Class & Methods
-- ✅ Functions
+- ✅ Class & Functions
 
 ```bash
 cd 04-e-cart-system
