@@ -1,16 +1,23 @@
 import random
-  
+from termcolor import colored, cprint  
+
 def dis():
     
-    print(f"""
+    def format_cell(index):
+        if arr[index] == "X":
+            return colored(arr[index], "red", attrs=["bold"])
+        elif arr[index] == "O":
+            return colored(arr[index], "yellow", attrs=["bold"])
+    
+    cprint(f"""
     -----------
-    {arr[0]} | {arr[1]} | {arr[2]}
+     {format_cell(0) if arr[0] != " " else "1"} | {format_cell(1) if arr[1] != " " else "2"} | {format_cell(2) if arr[2] != " " else "3"}
     -----------
-    {arr[3]} | {arr[4]} | {arr[5]}
+     {format_cell(3) if arr[3] != " " else "4"} | {format_cell(4) if arr[4] != " " else "5"} | {format_cell(5) if arr[5] != " " else "6"}
     -----------
-    {arr[6]} | {arr[7]} | {arr[8]} 
+     {format_cell(6) if arr[6] != " " else "7"} | {format_cell(7) if arr[7] != " " else "8"} | {format_cell(8) if arr[8] != " " else "9"}
     -----------
-    """)
+    """, "white")
     
 def AI():
     # Winning moves or Blocking moves
@@ -52,7 +59,6 @@ def AI():
             return
 
         
-  
 def win():
     
     # Check rows
@@ -106,10 +112,10 @@ while True:
     
     arr=[" " for _ in range(9)]
     print("\n\n----------------------------------------\n")
-    print("Welcome to Tic-Tac-Toe!")
-    print("You are playing as 'X' and the AI is 'O'.")
-    print("Enter the Index to play: ")
-    print("""
+    cprint("Welcome to Tic-Tac-Toe!\n", "cyan", attrs=["bold","underline"]    )
+    cprint("You are playing as 'X' and the AI is 'O'.", "yellow", attrs=["bold"])
+    cprint("Enter the Index to play: ", "magenta", attrs=["bold"])
+    cprint("""
     -----------
      1 | 2 | 3
     -----------
@@ -117,22 +123,22 @@ while True:
     -----------
      7 | 8 | 9
     -----------
-        """)
+        """, "white", attrs=["bold"])
 
     try:
         while True:
-            ind=input("Enter the index : ( X )")
+            ind = input(colored(f"Enter the index {colored('X', 'red', attrs=['bold'])} :", "light_blue", attrs=["bold"]))
             
             if arr.count(" ") == 0:
-                print("Game Over. It's a draw.")
+                cprint("Game Over. It's a draw.", "red", attrs=["bold"])
                 break
             if ind == "" or not ind.isdigit():
-                print("Invalid input. Please enter a number.")
+                cprint("Invalid input. Please enter a number.", "red", attrs=["bold"])
                 continue
             
             ind=int(ind)-1
             if arr[ind] == "X" or arr[ind] == "O":
-                print("Already filled. Choose another index.")
+                cprint("Already filled. Choose another index.", "red", attrs=["bold"])
                 continue
             
             arr[ind]="X"
@@ -140,14 +146,15 @@ while True:
             dis()
             
             if win()=="X":
-                print("X is the Win.")
+                cprint("You are the Win.", "green", attrs=["bold"])
                 break
             if win()=="O":
-                print("O is the Win.")
+                cprint("AI is the Win.", "green", attrs=["bold"])
                 break
             
     except IndexError:
-        print("out of range.")
+        cprint("out of range.", "red", attrs=["bold"])
         
-    if input("Do you want to play again? (y/n): ").lower() == 'y':
-        continue
+    if input(f"{colored('Do you want to play again? (y/n): ', 'magenta', attrs=['bold'])}").lower() != 'y':
+        cprint("Thank you for playing!", "cyan", attrs=["bold"])
+        exit()
