@@ -35,9 +35,11 @@ def AI():
         if (arr[a]==arr[b]=="O" or arr[a]==arr[b]=="X") and arr[c]==" ":
             arr[c]="O"
             return
+        
         if (arr[a]==arr[c]=="O" or arr[a]==arr[c]=="X") and arr[b]==" ":
             arr[b]="O"
             return
+        
         if (arr[b]==arr[c]=="O" or arr[b]==arr[c]=="X") and arr[a]==" ":
             arr[a]="O"
             return
@@ -61,12 +63,14 @@ def win():
     return None
 
 
+starting_player = "X"
+
 while True:
     
     arr=[" " for _ in range(9)]
-    print("\n\n----------------------------------------\n")
+    print("\n\n----------------------------------------")
     cprint("Welcome to Tic-Tac-Toe!\n", "cyan", attrs=["bold","underline"]    )
-    cprint("You are playing as 'X' and the AI is 'O'.", "yellow", attrs=["bold"])
+    cprint("You are playing as 'X' and the AI is 'O'\n.", "yellow", attrs=["bold"])
     cprint("Enter the Index to play: ", "magenta", attrs=["bold"])
     cprint("""
     -----------
@@ -77,42 +81,66 @@ while True:
      7 | 8 | 9
     -----------
         """, "white", attrs=["bold"])
+    print("----------------------------------------\n")
+    
+    win_status = None
+    current_turn = starting_player
 
     try:
         while True:
-            
-            ind = input(colored(f"Enter the index {colored('X', 'red', attrs=['bold'])} :", "light_blue", attrs=["bold"]))
-            
-            if ind == "" or not ind.isdigit():
-                cprint("Invalid input. Please enter a number.", "red", attrs=["bold"])
-                continue
-            
-            ind=int(ind)-1
-            if arr[ind] == "X" or arr[ind] == "O":
-                cprint("Already filled. Choose another index.", "red", attrs=["bold"])
-                continue
-            arr[ind]="X"
-            dis()
-            if win()=="X":
-                cprint("You are the Win.", "green", attrs=["bold"])
-                break
-            
-            if arr.count(" ") == 0:
-                cprint("Game Over. It's a draw.", "red", attrs=["bold"])
-                break
+            if current_turn == "X":
+                ind = input(colored(f"Enter the index {colored('X', 'red', attrs=['bold'])} :", "light_blue", attrs=["bold"]))
 
-            cprint(f"{colored('AI', 'yellow', attrs=['bold'])} is making a move....", "cyan", attrs=["bold"])
-            time.sleep(1)  # Pause for a moment to simulate thinking
-            AI()
-            dis()
-            if win()=="O":
-                cprint("AI is the Win.", "green", attrs=["bold"])
-                break
+                if ind == "" or not ind.isdigit() or int(ind) < 1 or int(ind) > 9:
+                    cprint("Invalid input. Please enter a number between 1 and 9.", "red", attrs=["bold"])
+                    continue
+
+                ind=int(ind)-1
+                if arr[ind] in ("X", "O"):
+                    cprint("Already filled. Choose another index.", "red", attrs=["bold"])
+                    continue
+
+                arr[ind]="X"
+                dis()
+                win_status = win()
+                if win_status == "X":
+                    cprint("You are the Win.", "green", attrs=["bold"])
+                    break
+
+                if arr.count(" ") == 0:
+                    cprint("Game Over. It's a draw.", "red", attrs=["bold"])
+                    break
+
+                current_turn = "O"
+                
+            else:
+                cprint(f"{colored('AI', 'yellow', attrs=['bold'])} is making a move....", "cyan", attrs=["bold"])
+                time.sleep(1)  # Pause for a moment to simulate thinking
+                AI()
+                dis()
+                win_status = win()
+                if win_status == "O":
+                    cprint("AI is the Win.", "green", attrs=["bold"])
+                    break
+
+                if arr.count(" ") == 0:
+                    cprint("Game Over. It's a draw.", "red", attrs=["bold"])
+                    break
+
+                current_turn = "X"
                     
-            
     except IndexError:
         cprint("out of range.", "red", attrs=["bold"])
         
+    if win_status in ("X", "O"):
+        starting_player = win_status
+        
+    if win_status is None and arr.count(" ") == 0:
+        if current_turn == "X":
+            starting_player = "O"
+        else:
+            starting_player = "X"
+
     if input(f"{colored('Do you want to play again? (y/n): ', 'magenta', attrs=['bold'])}").lower() != 'y':
         cprint("Thank you for playing!", "cyan", attrs=["bold"])
         exit()
